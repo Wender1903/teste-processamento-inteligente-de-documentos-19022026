@@ -33,6 +33,45 @@ Organize a saída e visualização das informações extraídas.
 
 Escreva aqui a documentação do desenvolvimento do teste 1.
 
+---
+
+## Teste 1 – Processamento de Faturas da CPFL
+
+### 1. Ferramentas e Bibliotecas Utilizadas
+
+- **pdfplumber**: leitura e extração de texto de PDFs.  
+- **reportlab**: geração de PDF organizado com os dados extraídos.  
+- **Python standard libraries**: manipulação de strings, listas e dicionários.  
+
+---
+
+### 2. Solução Implementada
+
+O arquivo `read.py` implementa a classe `FaturaCPFL`, que possui os seguintes métodos:
+
+#### 2.1. `ler_pdf()`
+- Abre o PDF utilizando `pdfplumber`.  
+- Lê todas as páginas e junta o texto em uma lista de linhas (`self.texto`).  
+
+#### 2.2. `extrair_dados()`
+- Percorre cada linha do PDF buscando palavras-chave específicas.  
+- Extrai os dados desejados, tratando números com vírgula e ponto.  
+- Cria um dicionário `self.dados_lidos` com todos os campos solicitados.  
+
+#### 2.3. `processar()`
+- Une a leitura do PDF e a extração de dados em um único passo.  
+- Retorna o dicionário com todos os dados extraídos.  
+
+#### 2.4. `exibir_dados()`
+- Imprime no console todos os dados extraídos de forma organizada.  
+
+#### 2.5. `gerar_pdf_organizado()`
+- Cria um PDF de saída com todos os dados, no formato “Chave: Valor”.  
+- Adiciona observação para campos não encontrados:  
+  > Obs: os valores 'None' é porque não consegui realizar a busca.  
+
+---
+
 # Teste 2
 
 Contexto: Você recebeu a fatura "fatura_cemig.pdf" e deve desenvolver um script para extrair seus dados. Antes de iniciar a programação, é essencial compreender e interpretar as informações presentes nesta fatura.
@@ -45,7 +84,28 @@ Atividade: Analise a fatura e redija um documento respondendo os pontos abaixo. 
  - Identifique o consumo da instalação referente ao mês de julho de 2023.
 
 # Resposta para o Teste 2
-Escreva aqui suas respostas para o teste 2.
+## 1-)
+### A fatura fatura_cemig.pdf refere-se a uma unidade com Geração Distribuída (GD), enquanto a fatura convencional é de consumo simples. Ela inclui créditos de energia compensada que reduzem o valor final. Diferente da fatura convencional, que apresenta apenas "Energia Elétrica" e "Contribuição de Iluminação Pública", a fatura com GD detalha a energia injetada e compensada. Também mostra o saldo acumulado de geração e inclui uma doação para "Ass Combt Câncer", ausente na fatura convencional.
+
+## 2-)
+### Valores Faturados - fatura_cemig.pdf (julho/2023)
+
+- **Energia Elétrica**: 50 kWh – R$ 47,96  
+- **Energia SCEE s/ ICMS**: 149 kWh – R$ 76,26  
+- **Energia compensada GD II**: 149 kWh – desconto R$ 67,24  
+- **Energia comp. adicional**: 7 kWh – desconto R$ 5,24  
+- **Bônus Itaipu**: desconto R$ 9,79  
+- **Ass Combt Câncer**: doação R$ 10,00  
+- **Contrib Ilum Pública**: R$ 24,71  
+
+**Total a pagar:** R$ 76,66
+
+## 3-)
+### A informação mais importante na seção Informações Gerais é o Saldo Atual de Geração, que é 234,63 kWh. Esse valor mostra a energia que você gerou e ainda não usou, que pode ser usada para reduzir o consumo das próximas faturas.
+
+## 4-) 
+### O consumo da instalação identificado na fatura referente ao mês de julho de 2023 é de 199 kWh.
+
 
 # Requisitos dos Desafios:
 
